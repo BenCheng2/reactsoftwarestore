@@ -1,19 +1,12 @@
 import React from 'react'
-import Product from "../../components/Product";
+import Product from "../components/Product";
 import {AppBar, Button, Grid, IconButton, Link, Toolbar, Typography} from "@mui/material";
-import products from "../../resources/products.json";
+import products from "../resources/products.json";
+import Bar from "../components/Bar";
 
 const Homepage = () => {
     return (
         <div>
-            <AppBar position="sticky">
-                <Toolbar variant="dense">
-                    <Typography variant="h6" color="inherit" component="div">
-                        Products
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-
             <Grid container justifyContent={"center"} sx={{m:2}}>
                 {products.map((product) => {
                     return (
