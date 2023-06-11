@@ -13,7 +13,27 @@ import {
     Typography
 } from "@mui/material";
 
-const Product = () => {
+interface productprops {
+    title: string;
+    subheader: string;
+    iconAddress: string;
+    product: string;
+    firstYearPrice: string;
+    secondYearPrice: string;
+    thirdYearPrice: string;
+    learnMore: string;
+    getQuote: string;
+    buyLink: string;
+}
+
+// @ts-ignore
+const Product:React.FC<productprops> = ({
+                 title, subheader,
+                 iconAddress, product,
+                 firstYearPrice, secondYearPrice,
+                 thirdYearPrice, learnMore,
+                 getQuote, buyLink
+                 }) => {
     return (
         <div>
             <Card
@@ -26,7 +46,7 @@ const Product = () => {
                 } }
             >
                 <CardHeader
-                    title={"Title" }
+                    title={ title }
                     subheader="Subheader"
                     titleTypographyProps={ {align: 'left'} }
                     subheaderTypographyProps={ {
@@ -38,22 +58,22 @@ const Product = () => {
                 >
                 </CardHeader>
 
-                <Container disableGutters={true}
-                           sx={{
+                <Container disableGutters={ true }
+                           sx={ {
                                ml: 2,
                                mb: 2,
                                display: 'flex',
                                flexDirection: 'row',
-                           }}
+                           } }
                 >
                     <Avatar
-                        src={require('../resources/pycharm.png')}
-                        sx={{
+                        src={ require('../resources/pycharm.png') }
+                        sx={ {
                             height: 20, width: 20,
-                        }}
+                        } }
                     >
                     </Avatar>
-                    <Typography sx={{ml: 1}}>Clion</Typography>
+                    <Typography sx={ {ml: 1} }>Clion</Typography>
                 </Container>
 
                 <Divider/>

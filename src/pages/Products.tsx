@@ -10,7 +10,7 @@ export default function Products(){
             <Grid container justifyContent={ "center" } sx={ {m: 2} }>
                 { products.map((product) => {
                     return (
-                        <Product key={ product.title } { ...product }/>
+                        <Product key={ product.title }  { ...product }/>
                     )
                 }) }
 
