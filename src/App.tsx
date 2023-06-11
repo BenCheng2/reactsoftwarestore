@@ -1,26 +1,26 @@
 import React from 'react';
 import {
     createBrowserRouter,
-    BrowserRouter,
-    Routes,
     Route,
     createRoutesFromElements,
     RouterProvider
 } from 'react-router-dom';
 import './App.css';
 import About from './pages/About';
-import Homepage from "./pages/homepage";
+import Products from "./pages/Products";
 import RootLayout from "./layouts/RootLayout";
-import CareersLayout from "./layouts/CareersLayout";
+import ProductDetail from "./pages/ProductDetail";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
         <Route path={ "/" } element={<RootLayout/>}>
-            <Route index element={ <Homepage/> }/>
-            <Route path="about" element={ <About/> }/>
-            <Route path={"career"} element={<CareersLayout/>}>
-                <Route path={":id"} element={}
+            <Route index element={ <Products/> }/>
+            <Route path={"products"} element={ <Products/> }/>
+            <Route path={"products"}>
+                <Route path={":id"} element={<ProductDetail/>}/>
             </Route>
+
+            <Route path="about" element={ <About/> }/>
 
             <Route path={"*"} element={<h1>404</h1>}/>
         </Route>
@@ -28,7 +28,6 @@ const router = createBrowserRouter(
 );
 
 function App() {
-    // @ts-ignore
     return (
         <RouterProvider router={ router }/>
     );

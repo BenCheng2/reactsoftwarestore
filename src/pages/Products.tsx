@@ -4,18 +4,18 @@ import {AppBar, Button, Grid, IconButton, Link, Toolbar, Typography} from "@mui/
 import products from "../resources/products.json";
 import Bar from "../components/Bar";
 
-const Homepage = () => {
+export default function Products(){
     return (
         <div>
-            <Grid container justifyContent={"center"} sx={{m:2}}>
-                {products.map((product) => {
+            <Grid container justifyContent={ "center" } sx={ {m: 2} }>
+                { products.map((product) => {
                     return (
-                        <Product key={product.title} {...product}/>
+                        <Product key={ product.title } { ...product }/>
                     )
-                })}
+                }) }
 
             </Grid>
         </div>
     )
 }
-export default Homepage
+

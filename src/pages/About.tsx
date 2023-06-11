@@ -1,8 +1,9 @@
 import React from 'react'
+import {Typography} from "@mui/material";
 
 const About = () => {
     return (
-        <div>About</div>
+        <Typography></Typography>
     )
 }
 export default About
