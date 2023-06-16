@@ -1,11 +1,10 @@
-import React, {useState} from 'react'
+import React, {ChangeEvent, useState} from 'react'
 import {Button, Container, FormLabel, Grid, TextField} from "@mui/material";
+import {log} from "util";
 
 const Login = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
-
-
 
     const requestLogin = async () => {
         try {
@@ -18,12 +17,20 @@ const Login = () => {
                 body: JSON.stringify(data)
             }
             const response = await fetch('http://localhost:8080/user/login', options);
-
-            console.log("Success")
+            const response_data = await response.text();
+            console.log(response_data);
         } catch (error) {
             console.log("error", error);
         }
     };
+
+    const setUsernameValue = (event: ChangeEvent<HTMLInputElement>) => {
+        setUsername(event.target.value);
+    }
+
+    const setPasswordValue = (event: ChangeEvent<HTMLInputElement>) => {
+        setPassword(event.target.value);
+    }
 
 
 
@@ -34,10 +41,10 @@ const Login = () => {
                     <form>
                         <Grid container direction="column" spacing={2}>
                             <Grid item>
-                                <TextField type="text" label="Username"/>
+                                <TextField type="text" label="Username" onChange={setUsernameValue}/>
                             </Grid>
                             <Grid item>
-                                <TextField type="password" label="Password" />
+                                <TextField type="password" label="Password"  onChange={setPasswordValue} />
                             </Grid>
                             <Grid item>
                                 <Button variant="contained" color="primary" onClick={() => requestLogin()}>Login</Button>
