@@ -16,24 +16,22 @@ import {
 interface productprops {
     title: string;
     subheader: string;
-    iconAddress: string;
     product: string;
     firstYearPrice: string;
     secondYearPrice: string;
     thirdYearPrice: string;
-    learnMore: string;
-    getQuote: string;
-    buyLink: string;
 }
 
 // @ts-ignore
-const Product:React.FC<productprops> = ({
-                 title, subheader,
-                 iconAddress, product,
-                 firstYearPrice, secondYearPrice,
-                 thirdYearPrice, learnMore,
-                 getQuote, buyLink
-                 }) => {
+const Product: React.FC<productprops> = ({
+                                             title,
+                                             subheader,
+                                             product,
+                                             firstYearPrice,
+                                             secondYearPrice,
+                                             thirdYearPrice,
+
+                                         }) => {
     return (
         <div>
             <Card
@@ -47,7 +45,7 @@ const Product:React.FC<productprops> = ({
             >
                 <CardHeader
                     title={ title }
-                    subheader="Subheader"
+                    subheader={ subheader }
                     titleTypographyProps={ {align: 'left'} }
                     subheaderTypographyProps={ {
                         align: 'left',
@@ -73,7 +71,7 @@ const Product:React.FC<productprops> = ({
                         } }
                     >
                     </Avatar>
-                    <Typography sx={ {ml: 1} }>Clion</Typography>
+                    <Typography sx={ {ml: 1} }>{ product }</Typography>
                 </Container>
 
                 <Divider/>
@@ -91,7 +89,7 @@ const Product:React.FC<productprops> = ({
                             per user, first year
                         </Typography>
                         <Typography variant="h5" color="#19191C" sx={ {} }>
-                            $229.00
+                            { firstYearPrice }
                         </Typography>
                     </Box>
 
@@ -107,7 +105,7 @@ const Product:React.FC<productprops> = ({
                             second year
                         </Typography>
                         <Typography variant="subtitle2" color="#19191C">
-                            $199.00
+                            { secondYearPrice }
                         </Typography>
                     </Box>
 
@@ -123,7 +121,7 @@ const Product:React.FC<productprops> = ({
                             third year onwards
                         </Typography>
                         <Typography variant="subtitle2" color="#19191C">
-                            $149.00
+                            { thirdYearPrice }
                         </Typography>
                     </Box>
                     <Box
@@ -140,12 +138,12 @@ const Product:React.FC<productprops> = ({
                             } }
                             disableGutters={ true }
                         >
-                            <Link href="#" color="inherit" sx={ {
+                            <Link href="/" color="inherit" sx={ {
                                 fontSize: 16
                             } }>
                                 Learn more
                             </Link>
-                            <Link href="#" color="inherit" sx={ {
+                            <Link href="/" color="inherit" sx={ {
                                 fontSize: 16,
                             } }>
                                 Get quote

@@ -3,7 +3,7 @@ import {Typography} from "@mui/material";
 
 const About = () => {
     return (
-        <Typography></Typography>
+        <Typography>About</Typography>
     )
 }
 export default About

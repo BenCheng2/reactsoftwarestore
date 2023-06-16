@@ -16,7 +16,9 @@ import Product from "./Product";
 
 const pages = [{title: 'Products', address: '/'},
     {title: 'About', address: '/about'}];
-const settings = ['Profile', 'Account', 'Cart', 'Logout'];
+// const settings = ['Profile', 'Account', 'Cart', 'Logout'];
+const settings = [
+    {title:'Account', address: 'profile'}, {title: 'Cart', address: 'cart'}, {title: 'Login', address: 'login'}, {title: 'Logout', address: 'logout'}];
 
 const Bar = () => {
     const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
@@ -148,8 +150,8 @@ const Bar = () => {
                             onClose={ handleCloseUserMenu }
                         >
                             { settings.map((setting) => (
-                                <MenuItem component={ Link } key={ setting } onClick={ handleCloseUserMenu }>
-                                    <Typography textAlign="center">{ setting }</Typography>
+                                <MenuItem component={ Link } key={ setting.title } href={setting.address} onClick={ handleCloseUserMenu }>
+                                    <Typography textAlign="center">{ setting.title }</Typography>
                                 </MenuItem>
                             )) }
                         </Menu>
