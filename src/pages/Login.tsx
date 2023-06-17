@@ -9,13 +9,13 @@ const Login = () => {
 
     const requestLogin = async () => {
         try {
-            const data = {username: 'user', password: 'user'};
+            const data = {username: username, password: password};
             const options = {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)
+                body: JSON.stringify(data),
             }
             const response = await fetch('http://localhost:8080/user/doLogin', options);
             const response_data = await response.text();
