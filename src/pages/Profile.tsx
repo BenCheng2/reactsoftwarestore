@@ -1,14 +1,26 @@
 import React from 'react'
 import {Grid, Typography} from "@mui/material";
 
-const Profile = () => {
+interface profileprops {
+    username: string;
+    introduction: string;
+    email: string;
+}
+
+const Profile: React.FC<profileprops> = ({username, introduction, email}) => {
     return (
         <div>
-            <Grid justifyContent={ "center" } sx={ {m: 2} }>
-                <Typography>Username</Typography>
-                <Typography>Password</Typography>
-                <Typography>Email</Typography>
-            </Grid>
+            <Typography sx={ {m: 5, fontSize: '2rem'} }>Account information</Typography>
+            <Typography sx={ {m: 5, fontSize: '1rem'} }>
+                Username: {username}
+            </Typography>
+            <Typography sx={ {m: 5, fontSize: '1rem'} }>
+                Password
+            </Typography>
+            <Typography sx={ {m: 5, fontSize: '1rem'} }>
+                Email: {email}
+            </Typography>
+
         </div>
     )
 }

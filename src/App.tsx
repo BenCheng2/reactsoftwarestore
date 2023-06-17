@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {
     createBrowserRouter,
     Route,
@@ -24,7 +24,7 @@ const router = createBrowserRouter(
                 <Route path={":id"} element={<ProductDetail/>}/>
             </Route>
             <Route path={"profile"}>
-                <Route path={""} element={<Profile/>}/>
+                <Route path={""} element={<Profile username="ben" introduction="1" email="1" />}/>
             </Route>
             <Route path={"cart"}>
                 <Route path={""} element={<Cart/>}/>
@@ -45,7 +45,7 @@ const router = createBrowserRouter(
 
 function App() {
     return (
-        <RouterProvider router={ router }/>
+        <RouterProvider router={ router } />
     );
 }
 

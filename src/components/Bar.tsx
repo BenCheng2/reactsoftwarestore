@@ -5,9 +5,11 @@ import {
     Box,
     Button,
     Container,
+    Grid,
     IconButton, Link,
     Menu,
     MenuItem,
+    Stack,
     Toolbar,
     Tooltip,
     Typography
@@ -61,7 +63,7 @@ const Bar = () => {
                         SoftStore
                     </Typography>
 
-                    <Box sx={ {flexGrow: 1, display: {xs: 'flex', md: 'none'}} }>
+                    <Box >
                         <IconButton
                             size="large"
                             aria-label="account of current user"
@@ -87,10 +89,11 @@ const Bar = () => {
                             onClose={ handleCloseNavMenu }
                             sx={ {
                                 display: {xs: 'block', md: 'none'},
+
                             } }
                         >
                             { pages.map((page) => (
-                                <MenuItem key={ page.title } onClick={ handleCloseNavMenu }>
+                                <MenuItem key={ page.title } onClick={ handleCloseNavMenu } >
                                     <Typography textAlign="center">{ page.title }</Typography>
                                 </MenuItem>
                             )) }
@@ -112,7 +115,6 @@ const Bar = () => {
                             textDecoration: 'none',
                         } }
                     >
-                        LOGO
                     </Typography>
                     <Box sx={ {flexGrow: 1, display: {xs: 'none', md: 'flex'}} }>
                         { pages.map((page) => (

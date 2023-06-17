@@ -13,7 +13,7 @@ export default function Products() {
 
     const fetchProducts = async () => {
         try {
-            const response = await fetch('http://localhost:8080/products', {method: 'GET'});
+            const response = await fetch('http://localhost:8080/products/getAllProducts', {method: 'GET'});
 
             const data = await response.json();
             setProducts(data);

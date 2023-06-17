@@ -1,14 +1,15 @@
-import React, {ChangeEvent, useState} from 'react'
+import React, {ChangeEvent, useContext, useState} from 'react'
 import {Button, Container, FormLabel, Grid, TextField} from "@mui/material";
 import {log} from "util";
 
 const Login = () => {
+
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
 
     const requestLogin = async () => {
         try {
-            const data = {username: 'username', password: 'password'};
+            const data = {username: 'user', password: 'user'};
             const options = {
                 method: 'POST',
                 headers: {
@@ -16,7 +17,7 @@ const Login = () => {
                 },
                 body: JSON.stringify(data)
             }
-            const response = await fetch('http://localhost:8080/user/login', options);
+            const response = await fetch('http://localhost:8080/user/doLogin', options);
             const response_data = await response.text();
             console.log(response_data);
         } catch (error) {
