@@ -1,8 +1,9 @@
 import React, {ChangeEvent, useContext, useState} from 'react'
-import {Button, Container, FormLabel, Grid, TextField} from "@mui/material";
+import {Button, Container, FormLabel, Grid, TextField, Typography} from "@mui/material";
 import {log} from "util";
 
 const Login = () => {
+    const [loggedIn, setLoggedIn] = useState(false);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
@@ -16,10 +17,30 @@ const Login = () => {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(data),
+                credentials: 'include' as RequestCredentials
             }
             const response = await fetch('http://localhost:8080/user/doLogin', options);
             const response_data = await response.text();
             console.log(response_data);
+        } catch (error) {
+            console.log("error", error);
+        }
+    };
+
+    const checkLogin = async () => {
+        try {
+            const data = {username: username, password: password};
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+                credentials: 'include' as RequestCredentials
+            }
+            const response = await fetch('http://localhost:8080/user/checkLogin', options);
+            const response_data = await response.json();
+            setLoggedIn(response_data);
         } catch (error) {
             console.log("error", error);
         }
@@ -33,6 +54,15 @@ const Login = () => {
         setPassword(event.target.value);
     }
 
+    if (loggedIn) {
+        return (
+            <div>
+                <Container>
+                    <p>You are already logged in.</p>
+                </Container>
+            </div>
+        );
+    }
 
 
     return (
