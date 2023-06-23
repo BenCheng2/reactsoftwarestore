@@ -14,6 +14,9 @@ import Profile from "./pages/Profile";
 import Cart from "./pages/Cart";
 import Logout from "./pages/Logout";
 import Login from "./pages/Login";
+import Navbar from "./components/Navbar";
+import Signup from "./pages/Signup";
+import Publish from "./pages/Publish";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -35,6 +38,13 @@ const router = createBrowserRouter(
             <Route path={"logout"}>
                 <Route path={""} element={<Logout/>}/>
             </Route>
+            <Route path={"signup"}>
+                <Route path={""} element={<Signup/>}/>
+            </Route>
+            <Route path={"publish"}>
+                <Route path={""} element={<Publish/>}/>
+            </Route>
+
 
             <Route path={ "about" } element={ <About/> }/>
 
@@ -43,9 +53,13 @@ const router = createBrowserRouter(
     )
 );
 
+
+
 function App() {
+
+
     return (
-        <RouterProvider router={ router } />
+            <RouterProvider router={ router } />
     );
 }
 

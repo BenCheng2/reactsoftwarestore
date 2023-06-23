@@ -1,18 +1,20 @@
 import React, {useLayoutEffect} from 'react'
 import {NavLink, Outlet} from "react-router-dom";
-import Bar from "../components/Bar";
+import Navbar from "../components/Navbar";
 
 const RootLayout = () => {
     return (
         <div className={"root-layout"}>
             <header>
                 <nav>
-                    <Bar/>
+                    <Navbar/>
                 </nav>
             </header>
 
-            <main>
-                <Outlet/>
+            <main >
+                <div style={{marginTop:'100px'}}>
+                    <Outlet/>
+                </div>
             </main>
         </div>
     )

@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import Product from "../components/Product";
 import {AppBar, Button, Grid, IconButton, Link, Toolbar, Typography} from "@mui/material";
 import products from "../resources/products.json";
-import Bar from "../components/Bar";
 
 export default function Products() {
     const [products, setProducts] = useState<Array<typeof Product>>([]);
