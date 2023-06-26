@@ -1,12 +1,13 @@
-import React, {ChangeEvent, useContext, useState} from 'react'
+import React, {ChangeEvent, useContext, useEffect, useState} from 'react'
 import {Button, Container, FormLabel, Grid, TextField, Typography} from "@mui/material";
-import {log} from "util";
 
 const Login = () => {
     const [loggedIn, setLoggedIn] = useState(false);
 
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+
+
 
     const requestLogin = async () => {
         try {
@@ -29,7 +30,7 @@ const Login = () => {
 
     const checkLogin = async () => {
         try {
-            const data = {username: username, password: password};
+            const data = {};
             const options = {
                 method: 'POST',
                 headers: {
@@ -40,6 +41,7 @@ const Login = () => {
             }
             const response = await fetch('http://localhost:8080/user/checkLogin', options);
             const response_data = await response.json();
+            console.log(response_data);
             setLoggedIn(response_data);
         } catch (error) {
             console.log("error", error);
@@ -54,11 +56,16 @@ const Login = () => {
         setPassword(event.target.value);
     }
 
+    useEffect(() => {
+        checkLogin();
+    });
+
+
     if (loggedIn) {
         return (
             <div>
                 <Container>
-                    <p>You are already logged in.</p>
+                    <Typography sx={ {m: 5, fontSize: '1.5rem'} }>You are already logged in.</Typography>
                 </Container>
             </div>
         );
@@ -71,14 +78,22 @@ const Login = () => {
                 <Grid item>
                     <form>
                         <Grid container direction="column" spacing={2}>
-                            <Grid item>
-                                <TextField type="text" label="Username" onChange={setUsernameValue}/>
+                            <Grid item >
+                                {/*<TextField type="text" label="Username" onChange={setUsernameValue}*/}
+                                {/*   inputProps={{*/}
+                                {/*        style: { backgroundColor: '#fffaf4' },*/}
+                                {/*}}*/}
+                                {/*/>*/}
+                                <TextField label="Username" color="primary" onChange={setUsernameValue} focused />
+
                             </Grid>
                             <Grid item>
-                                <TextField type="password" label="Password"  onChange={setPasswordValue} />
+                                <TextField label="Password" color="secondary" onChange={setPasswordValue} focused />
                             </Grid>
                             <Grid item>
-                                <Button variant="contained" color="primary" onClick={() => requestLogin()}>Login</Button>
+                                <Button variant="contained" color="primary" onClick={() => {
+                                    requestLogin();
+                                }} href="/">Login</Button>
                             </Grid>
                         </Grid>
                     </form>

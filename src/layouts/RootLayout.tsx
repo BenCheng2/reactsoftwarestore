@@ -4,7 +4,7 @@ import Navbar from "../components/Navbar";
 
 const RootLayout = () => {
     return (
-        <div className={"root-layout"}>
+        <div className={"root-layout"} style={{ background: '#aacbef', width: '100%', minHeight: '2000px'}}>
             <header>
                 <nav>
                     <Navbar/>
@@ -12,7 +12,7 @@ const RootLayout = () => {
             </header>
 
             <main >
-                <div style={{marginTop:'100px'}}>
+                <div style={{paddingTop:'100px', minHeight: '100%'}}>
                     <Outlet/>
                 </div>
             </main>

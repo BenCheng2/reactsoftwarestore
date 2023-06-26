@@ -1,9 +1,9 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {
     Avatar,
     Box,
     Button,
-    Card,
+    Card, CardActions,
     CardContent,
     CardHeader,
     CardMedia,
@@ -23,7 +23,7 @@ interface productprops {
 }
 
 // @ts-ignore
-const Product: React.FC<productprops> = ({
+const Product: React.FC<productprops> = ({   id,
                                              title,
                                              subheader,
                                              product,
@@ -32,141 +32,59 @@ const Product: React.FC<productprops> = ({
                                              thirdYearPrice,
 
                                          }) => {
+    const [Id, setId] = useState(id);
+
+    const fetchBuyProduct = async () => {
+        try {
+            const data = {id: id};
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+                credentials: 'include' as RequestCredentials
+            }
+            const response = await fetch('http://localhost:8080/user/buyProduct', options);
+            const response_data = await response.text();
+            console.log(response_data);
+        } catch (error) {
+            console.log("error", error);
+        }
+    };
+
     return (
         <div>
-            <Card
-                sx={ {
-                    width: 300,
-                    border: '1px solid rgba(39,40,44,.2)',
-                    backgroundColor: '#fafafa',
-                    // Ensure distance between multiple cards
-                    m: 1
-                } }
-            >
-                <CardHeader
-                    title={ title }
-                    subheader={ subheader }
-                    titleTypographyProps={ {align: 'left'} }
-                    subheaderTypographyProps={ {
-                        align: 'left',
-                    } }
-                    sx={ {
-                        backgroundColor: '#fafafa',
-                    } }
-                >
-                </CardHeader>
-
-                <Container disableGutters={ true }
-                           sx={ {
-                               ml: 2,
-                               mb: 2,
-                               display: 'flex',
-                               flexDirection: 'row',
-                           } }
-                >
-                    <Avatar
-                        src={ require('../resources/pycharm.png') }
-                        sx={ {
-                            height: 20, width: 20,
-                        } }
-                    >
-                    </Avatar>
-                    <Typography sx={ {ml: 1} }>{ product }</Typography>
-                </Container>
-
-                <Divider/>
-
+            <Card sx={{ minWidth: 275, m:2, background: '#edece8', color: 'f2af9b'}}>
                 <CardContent>
-                    <Box
-                        sx={ {
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'baseline',
-                            mb: 2,
-                        } }
-                    >
-                        <Typography variant="subtitle2" color="#5E94C7">
-                            per user, first year
-                        </Typography>
-                        <Typography variant="h5" color="#19191C" sx={ {} }>
-                            { firstYearPrice }
-                        </Typography>
-                    </Box>
+                    <Typography variant="h5" component="div" color="#96a48b">
+                        { title }
+                    </Typography>
+                    <Typography sx={{ mb: 1.5 }} color="#f2af9b">
+                        { subheader }
+                    </Typography>
+                    <Typography variant="body2" sx={{ mb: 1.5, display: 'flex', justifyContent: 'space-between' }}>
+                        {product}
+                    </Typography>
+                    <Typography variant="body2" sx={{ mb: 1, display: 'flex', justifyContent: 'space-between' }}>
+                        <span>per user, first year</span>
+                        <span>${ firstYearPrice }</span>
+                    </Typography>
+                    <Typography variant="body2" sx={{ mb: 1, display: 'flex', justifyContent: 'space-between' }}>
+                        <span>second year</span>
+                        <span>${ secondYearPrice }</span>
+                    </Typography>
+                    <Typography variant="body2" sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <span>third year onwards</span>
+                        <span>${ thirdYearPrice }</span>
+                    </Typography>
 
-                    <Box
-                        sx={ {
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'baseline',
-                            mb: 2,
-                        } }
-                    >
-                        <Typography variant="subtitle2" color="#5E94C7">
-                            second year
-                        </Typography>
-                        <Typography variant="subtitle2" color="#19191C">
-                            { secondYearPrice }
-                        </Typography>
-                    </Box>
 
-                    <Box
-                        sx={ {
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'baseline',
-                            mb: 2,
-                        } }
-                    >
-                        <Typography variant="subtitle2" color="#5E94C7">
-                            third year onwards
-                        </Typography>
-                        <Typography variant="subtitle2" color="#19191C">
-                            { thirdYearPrice }
-                        </Typography>
-                    </Box>
-                    <Box
-                        sx={ {
-                            display: 'flex',
-                            justifyContent: 'space-between',
-                            alignItems: 'center',
-                        } }
-                    >
-                        <Container
-                            sx={ {
-                                display: 'flex',
-                                flexDirection: 'column',
-                            } }
-                            disableGutters={ true }
-                        >
-                            <Link href="/" color="inherit" sx={ {
-                                fontSize: 16
-                            } }>
-                                Learn more
-                            </Link>
-                            <Link href="/" color="inherit" sx={ {
-                                fontSize: 16,
-                            } }>
-                                Get quote
-                            </Link>
-                        </Container>
-                        <Button variant="contained" sx={ {
-                            color: "#eeeeee",
-                            background: "#2196f3",
-                            '&:hover': {
-                                color: "#607d8b",
-                                background: '#bdbdbd',
-                            },
-                            height: 40
-                        } }>
-                            Buy
-                        </Button>
-
-                    </Box>
                 </CardContent>
-
-
+                <CardActions>
+                    <Button size="small" onClick={()=>fetchBuyProduct()} sx={{justifyContent: 'flex-start', marginLeft: '3px'}}>Buy</Button>
+                </CardActions>
             </Card>
-
 
         </div>
     )

@@ -5,7 +5,7 @@ const About = () => {
     return (
         <div>
             <Typography sx={ {m: 5, fontSize: '2rem'} }>About</Typography>
-            <Typography sx={ {m: 5, fontSize: '1rem'} }>
+            <Typography sx={ {marginLeft: 5, fontSize: '1.5rem'} }>
                 This is a student's project for learning React, TypeScript, Material UI, and Spring Boot.
             </Typography>
 

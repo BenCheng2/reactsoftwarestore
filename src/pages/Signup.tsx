@@ -65,16 +65,16 @@ const Signup = () => {
                     <form>
                         <Grid container direction="column" spacing={2}>
                             <Grid item>
-                                <TextField type="text" label="Username" onChange={setUsernameValue}/>
+                                <TextField type="text" label="Username" color="primary" onChange={setUsernameValue} focused />
                             </Grid>
                             <Grid item>
-                                <TextField type="password" label="Password"  onChange={setPasswordValue} />
+                                <TextField type="password" label="Password" color="secondary" onChange={setPasswordValue} focused />
                             </Grid>
                             <Grid item>
-                                <TextField type="repassword" label="Re-enter password"  onChange={setRepasswordValue} />
+                                <TextField type="repassword" label="Re-enter password" color="secondary" onChange={setRepasswordValue} focused />
                             </Grid>
                             <Grid item>
-                                <TextField type="email" label="Email"  onChange={setEmailValue} />
+                                <TextField type="email" label="Email" color="primary" onChange={setEmailValue} focused />
                             </Grid>
                             <Grid item>
                                 <Button variant="contained" color="primary" onClick={() => requestRegister()}>Sign up</Button>

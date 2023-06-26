@@ -17,6 +17,7 @@ import Login from "./pages/Login";
 import Navbar from "./components/Navbar";
 import Signup from "./pages/Signup";
 import Publish from "./pages/Publish";
+import {Container} from "@mui/material";
 
 const router = createBrowserRouter(
     createRoutesFromElements(
@@ -59,7 +60,9 @@ function App() {
 
 
     return (
+        <div >
             <RouterProvider router={ router } />
+        </div>
     );
 }
 
