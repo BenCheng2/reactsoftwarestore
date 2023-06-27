@@ -17,6 +17,7 @@ const Logout = () => {
                 }
                 const response = await fetch('http://localhost:8080/user/logout', options);
                 const response_data = await response.text();
+                alert("You logged out");
                 console.log(response_data);
             } catch (error) {
                 console.log("error", error);

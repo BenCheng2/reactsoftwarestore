@@ -22,6 +22,7 @@ const Login = () => {
             }
             const response = await fetch('http://localhost:8080/user/doLogin', options);
             const response_data = await response.text();
+            alert("You logged in");
             console.log(response_data);
         } catch (error) {
             console.log("error", error);

@@ -24,6 +24,7 @@ const Signup = () => {
             }
             const response = await fetch('http://localhost:8080/user/doRegister', options);
             const response_data = await response.text();
+            alert("Account create successfully");
             console.log(response_data);
         } catch (error) {
             console.log("error", error);

@@ -1,5 +1,5 @@
-import React, {ChangeEvent, useState} from 'react'
-import {Button, Grid, TextField} from "@mui/material";
+import React, {ChangeEvent, useEffect, useState} from 'react'
+import {Button, Container, Grid, TextField, Typography} from "@mui/material";
 
 const Publish = () => {
 
@@ -10,7 +10,8 @@ const Publish = () => {
     const [secondYearPrice, setSecondYearPrice] = useState('');
     const [thirdYearPrice, setThirdYearPrice] = useState('');
 
-    const [imageData, setImageData] = useState('')
+    const [loggedIn, setLoggedIn] = useState(false);
+
 
     const requestPublish = async () => {
         try {
@@ -25,6 +26,8 @@ const Publish = () => {
             }
             const response = await fetch('http://localhost:8080/product/addProduct', options);
             const response_data = await response.text();
+            alert("You published a product");
+            window.location.reload();
             console.log(response_data);
         } catch (error) {
             console.log("error", error);
@@ -55,6 +58,41 @@ const Publish = () => {
     const setThirdYearPriceValue = (event: ChangeEvent<HTMLInputElement>) => {
         setThirdYearPrice(event.target.value);
     }
+
+    const checkLogin = async () => {
+        try {
+            const data = {};
+            const options = {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data),
+                credentials: 'include' as RequestCredentials
+            }
+            const response = await fetch('http://localhost:8080/user/checkLogin', options);
+            const response_data = await response.json();
+            console.log(response_data);
+            setLoggedIn(response_data);
+        } catch (error) {
+            console.log("error", error);
+        }
+    };
+
+    useEffect(() => {
+        checkLogin();
+    });
+
+    if (!loggedIn) {
+        return (
+            <div>
+                <Container>
+                    <Typography sx={ {m: 5, fontSize: '1.5rem'} }>You did not login.</Typography>
+                </Container>
+            </div>
+        );
+    }
+
 
 
     return (

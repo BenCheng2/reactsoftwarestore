@@ -32,8 +32,6 @@ const Product: React.FC<productprops> = ({   id,
                                              thirdYearPrice,
 
                                          }) => {
-    const [Id, setId] = useState(id);
-
     const fetchBuyProduct = async () => {
         try {
             const data = {id: id};
@@ -47,6 +45,7 @@ const Product: React.FC<productprops> = ({   id,
             }
             const response = await fetch('http://localhost:8080/user/buyProduct', options);
             const response_data = await response.text();
+            alert("You purchased a product");
             console.log(response_data);
         } catch (error) {
             console.log("error", error);
